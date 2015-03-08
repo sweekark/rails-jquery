@@ -2,35 +2,45 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @bills.each do |bill| %>
-      <tr>
-        <td><%= link_to bill.id, bill_path(bill) %></td>
-        <td><%= bill.name %></td>
-        <td><%=l bill.created_at %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_bill_path(bill), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      bill_path(bill),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+<%= form_for_filterrific @filterrific , html: { id: 'filterrific-no-ajax-auto-submit' }  do |f| %>
+    <div class="well">
+      <div class="row">
+        <div class="span3 chardin_box">
+          Search
+          <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+          <%= f.text_field(
+                      :search_query,
+                      #class: 'filterrific-periodically-observed'
+              ) %>
+        </div>
+        <div>
+          Sorted by
+          <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
+          <%# See below for the Student.options_for_sorted_by presenter method %>
+        </div>
+        <div>
+          <%= link_to(
+                      'Reset filters',
+                      reset_filterrific_url,
+                      class:'btn btn-default btn-sm'
+              ) %>
+        </div>
+      </div>
+    </div>
+    <%= f.submit 'Filter' %>
+    <%# add an automated spinner to your form when the list is refreshed %>
+    <%= render_filterrific_spinner %>
+<% end %>
+<%= render(
+            partial: 'bills/list',
+            locals: { bills: @bills }
+    ) %>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_bill_path,
             :class => 'btn btn-primary' %>
+
+<div class="flickr_pagination">
+  <%= will_paginate @bills, :container => false %>
+</div>

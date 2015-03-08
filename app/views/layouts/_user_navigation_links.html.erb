@@ -1,7 +1,5 @@
 <%# add navigation links to this file %>
 <%= link_to 'Home', root_path, class: 'navbar-brand' %>
-<%= link_to 'Plans', root_path, class: 'navbar-brand' %>
-<%= link_to 'Contact Us', root_path, class: 'navbar-brand' %>
 <% if user_signed_in? %>
   <!--<li><%= link_to current_user.name , edit_user_registration_path %></li>-->
   <li><%= link_to 'My Account', edit_user_registration_path %></li>

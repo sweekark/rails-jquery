@@ -1,0 +1,9 @@
+= simple_form_for @notification_list, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :name
+  = error_span(@notification_list[:name])
+  = f.input :email
+  = error_span(@notification_list[:email])
+  = f.input :phno
+  = error_span(@notification_list[:phno])
+  = f.button :submit, :class => 'btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), notification_lists_path, :class => 'btn btn-default'

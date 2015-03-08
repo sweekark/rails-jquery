@@ -11,12 +11,99 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225095159) do
+ActiveRecord::Schema.define(version: 20150307121428) do
 
   create_table "bills", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "merchants", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "notification_lists", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "email",      limit: 255
+    t.integer  "phno",       limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "packages", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "type",       limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "avatar",     limit: 255
+  end
+
+  create_table "packages_routers", force: :cascade do |t|
+    t.integer "router_id",  limit: 4
+    t.integer "package_id", limit: 4
+  end
+
+  add_index "packages_routers", ["package_id"], name: "index_packages_routers_on_package_id", using: :btree
+  add_index "packages_routers", ["router_id"], name: "index_packages_routers_on_router_id", using: :btree
+
+  create_table "payments", force: :cascade do |t|
+    t.float    "amount",         limit: 24
+    t.string   "cardType",       limit: 255
+    t.string   "amountReceived", limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "router_packages", force: :cascade do |t|
+    t.integer  "router_id",  limit: 4
+    t.integer  "package_id", limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "router_packages", ["package_id"], name: "index_router_packages_on_package_id", using: :btree
+  add_index "router_packages", ["router_id"], name: "index_router_packages_on_router_id", using: :btree
+
+  create_table "router_statuses", force: :cascade do |t|
+    t.integer "router_id", limit: 4
+    t.integer "status",    limit: 4
+    t.date    "time"
+  end
+
+  create_table "routers", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "macid",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "store_id",   limit: 4
+  end
+
+  create_table "stores", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "location",   limit: 255
+    t.string   "address",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "route_id",   limit: 4
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "country_id", limit: 4
+    t.string   "first_name", limit: 255
+    t.string   "last_name",  limit: 255
+    t.string   "email",      limit: 255
   end
 
   create_table "users", force: :cascade do |t|

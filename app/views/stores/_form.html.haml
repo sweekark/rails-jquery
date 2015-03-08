@@ -1,0 +1,12 @@
+= simple_form_for @store, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :name
+  = error_span(@store[:name])
+  = f.input :location
+  = error_span(@store[:location])
+  = f.input :address
+  = error_span(@store[:address])
+  =# render :partial => "router", :object => @router
+  = f.fields_for :router do |builder|
+    = render "router", :f => builder
+  = f.button :submit, :class => 'btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), stores_path, :class => 'btn btn-default'

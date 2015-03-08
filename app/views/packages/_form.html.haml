@@ -1,0 +1,12 @@
+= simple_form_for @package, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :name
+  = error_span(@package[:name])
+  = f.input :type
+  = error_span(@package[:type])
+  = f.input :avatar, :as => :file
+  .p
+    = f.file_field :avatar
+    = f.label :remote_image_url, "or image URL"
+    = f.text_field :remote_avatar_url
+  = f.button :submit, :class => 'btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), packages_path, :class => 'btn btn-default'

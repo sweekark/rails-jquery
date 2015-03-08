@@ -1,0 +1,2 @@
+module NotificationListsHelper
+end

@@ -4,8 +4,23 @@ class BillsController < ApplicationController
   # GET /bills
   # GET /bills.json
   def index
-    @bills = Bill.all
+    @filterrific = initialize_filterrific(
+        Bill,
+        params[:filterrific],
+        select_options: {
+            sorted_by: Bill.options_for_sorted_by,
+        },
+        persistence_id: 'shared_key',
+        default_filter_params: {},
+        available_filters: [],
+    ) or return
+    @bills = Bill.filterrific_find(@filterrific).page(params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
+
 
   # GET /bills/1
   # GET /bills/1.json
@@ -71,4 +86,5 @@ class BillsController < ApplicationController
     def bill_params
       params.require(:bill).permit(:name)
     end
+
 end
