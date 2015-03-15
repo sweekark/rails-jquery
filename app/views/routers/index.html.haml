@@ -18,6 +18,12 @@
         %td= router.macid
         %td= router.store_id
         %td=l router.created_at
+        - if defined? router.router_statuses.get_latest.status
+          %td{:color => "red"}
+            %span{:class => "glyphicon glyphicon-off"} DOWN
+        - else
+          %td
+            %p DOWN
         %td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_router_path(router), :class => 'btn btn-default btn-xs'
           = link_to t('.destroy', :default => t("helpers.links.destroy")), router_path(router), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'

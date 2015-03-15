@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :router_statuses
+
   resources :packages
 
   resources :notification_lists
@@ -6,16 +8,6 @@ Rails.application.routes.draw do
   resources :routers
 
   resources :stores
-
-  resources :countries
-
-  resources :students
-
-  resources :payments
-
-  resources :merchants
-
-  resources :bills
 
   mount Upmin::Engine => '/admin'
   root to: 'visitors#index'

@@ -4,8 +4,6 @@
   <li><%= link_to 'My Account', edit_user_registration_path %></li>
   <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
   <li><%= link_to 'Users', users_path %></li>
-  <li><%= link_to 'Payments', payments_path %></li>
-  <li><%= link_to 'Merchant Info', edit_merchant_path(1) %></li>
 <% else %>
   <li><%= link_to 'Sign in', new_user_session_path %></li>
 <% end %>

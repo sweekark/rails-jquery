@@ -4,7 +4,7 @@ class RoutersController < ApplicationController
   # GET /routers
   # GET /routers.json
   def index
-    @routers = Router.all
+    @routers = Router.get_routers
   end
 
   # GET /routers/1

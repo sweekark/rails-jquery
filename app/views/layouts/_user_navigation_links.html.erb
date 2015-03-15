@@ -2,11 +2,13 @@
 <%= link_to 'Home', root_path, class: 'navbar-brand' %>
 <% if user_signed_in? %>
   <!--<li><%= link_to current_user.name , edit_user_registration_path %></li>-->
-  <li><%= link_to 'My Account', edit_user_registration_path %></li>
-  <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
-  <li><%= link_to 'Pay Bill', new_payment_path %></li>
-  <li><%= link_to 'My Bills', bills_path %></li>
-  <li><%= link_to 'My Payments', payments_path %></li>
+  <!--<li><%= link_to 'My Account', edit_user_registration_path %></li>
+  <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>-->
 <% else %>
-    <li><%= link_to 'Sign in', new_user_session_path %></li>
+    <li><%= link_to 'Stores', stores_path %></li>
+    <li><%= link_to 'Packages', packages_path %></li>
+    <li><%= link_to 'Routers', routers_path %></li>
+    <li><%= link_to 'Notification Lists', notification_lists_path %></li>
+
+<!--    <li><%= link_to 'Sign in', new_user_session_path %></li>-->
 <% end %>
