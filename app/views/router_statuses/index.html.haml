@@ -1,0 +1,28 @@
+- model_class = RouterStatus
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:router_id)
+      %th= model_class.human_attribute_name(:status)
+      %th= model_class.human_attribute_name(:time)
+      %th= model_class.human_attribute_name(:macid)
+      %th= model_class.human_attribute_name(:created_at)
+  %tbody
+    - @router_statuses.each do |router_status|
+      %tr
+        %td= link_to router_status.id, router_status_path(router_status)
+        %td= router_status.router_id
+        - if router_status.status == 0
+          %td
+            %p.router_down= router_status.status
+        - else
+          %td
+            %p.router_up= router_status.status
+        %td= router_status.time
+        %td= router_status.macid
+        %td=l router_status.created_at
+        %td
+= link_to t('.new', :default => t("helpers.links.new")), new_router_status_path, :class => 'btn btn-primary'

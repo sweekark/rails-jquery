@@ -1,0 +1,11 @@
+= simple_form_for @router_status, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :router_id
+  = error_span(@router_status[:router_id])
+  = f.input :status
+  = error_span(@router_status[:status])
+  = f.input :time
+  = error_span(@router_status[:time])
+  = f.input :macid
+  = error_span(@router_status[:macid])
+  = f.button :submit, :class => 'btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), router_statuses_path, :class => 'btn btn-default'
