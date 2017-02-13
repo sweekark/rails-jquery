@@ -1,8 +1,18 @@
-Rails Jquery Haml Auth
+Wifi services server for sangeeta mobile
 ================
 
 
-This application was generated with the [rails_apps_composer]
+This application is a single point of connection for all the sangeeta mobile outlets
+
+The individual devices have to be registered in the admin panel
+
+Content addition is a ongoing process and has to be monitored
+
+The server has to be continuously monitored for disk space and performance
+
+Content servers can run out of space very soon 
+
+Automation release planned in the coming months
 
 Problems? Issues?
 -----------
@@ -26,14 +36,5 @@ Documentation and Support
 Issues
 -------------
 
-Similar Projects
-----------------
-
-Contributing
-------------
-
-Credits
--------
-
-License
--------
+Manual addition of content 
+user role not available
